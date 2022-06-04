@@ -1,4 +1,7 @@
 import { Flex, Grid, Heading } from "@chakra-ui/react";
+import NextLink from "next/link";
+
+import { Button } from "../../../components/Button";
 import { PeopleAdded } from "../../../components/PeopleAdded";
 
 export default function NewDocument() {
@@ -13,6 +16,7 @@ export default function NewDocument() {
         borderRadius="8"
         mt="8"
         rowGap={8}
+        p="4"
       >
         <Flex align="center" ps="2">
           <PeopleAdded name="João Pedro" email="ojpzinho@gmail.com" />
@@ -50,6 +54,12 @@ export default function NewDocument() {
           Oie
         </Flex>
       </Grid>
+
+      <Flex align="center" justifyContent="flex-end" mt="4">
+        <Button>
+          <NextLink href="./verify">Next</NextLink>
+        </Button>
+      </Flex>
     </Flex>
   );
 }

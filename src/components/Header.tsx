@@ -35,7 +35,7 @@ const Header: React.FC = () => {
             },
             {
               label: "New document",
-              href: "/document/new/create",
+              href: "/document/create",
             },
             {
               label: "My documents",
