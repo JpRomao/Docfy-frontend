@@ -1,41 +1,31 @@
-import { Box, Flex } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
+import { useState } from "react";
+import { Flex } from "@chakra-ui/react";
+import Head from "next/head";
+
+import { Dropbox } from "../../../components/Dropbox";
+import { Button } from "../../../components/Button";
+
+export interface DocumentProps {
+  file: File;
+  fileBase64: string;
+}
 
 export default function CreateDocument() {
-  const [files, setFiles] = useState([]);
-
-  const { getInputProps, getRootProps } = useDropzone({
-    accept: {
-      "image/*": [],
-      ".pdf": [],
-    },
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-    },
-  });
-
-  const thumbs = files.map((file) => (
-    <div key={file.name}>
-      <div>
-        <img src={file.preview} />
-      </div>
-    </div>
-  ));
-
-  useEffect(() => {
-    files.forEach((file) => URL.revokeObjectURL(file.preview));
-  }, [files]);
+  const [document, setDocument] = useState({} as DocumentProps);
 
   return (
-    <Flex>
-      <Box {...getRootProps({ className: "dropzone" })}></Box>
-    </Flex>
+    <>
+      <Head key="create">
+        <title>Docfy | Create</title>
+      </Head>
+
+      <Flex as="section" flex="1" direction="column" alignItems="center">
+        <Dropbox document={document} setDocument={setDocument} />
+
+        <Flex w="100%" justifyContent="flex-end" mt="4" pe="10%">
+          <Button>Next</Button>
+        </Flex>
+      </Flex>
+    </>
   );
 }

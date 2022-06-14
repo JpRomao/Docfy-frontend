@@ -21,8 +21,8 @@ export const Menu: React.FC<MenuInterface> = ({ options }) => {
       <MenuButton as={Button}>Actions</MenuButton>
 
       <MenuList bg="gray.900">
-        {options.map((option) => (
-          <MenuItem _hover={{ color: "gray.800" }}>
+        {options.map((option, index) => (
+          <MenuItem _hover={{ color: "gray.800" }} key={`option-${index}`}>
             <NextLink href={option.href}>{option.label}</NextLink>
           </MenuItem>
         ))}
